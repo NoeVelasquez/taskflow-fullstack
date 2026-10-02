@@ -1,13 +1,19 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+// Detectar automáticamente la API de producción en Render si no está definida en .env
+const defaultApiUrl =
+  typeof window !== 'undefined' && window.location.hostname.includes('render.com')
+    ? 'https://taskflow-fullstack-vtbf.onrender.com/api'
+    : 'http://localhost:3000/api';
+
+const baseURL = import.meta.env.VITE_API_URL || defaultApiUrl;
 
 const axiosClient = axios.create({
   baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000,
+  timeout: 15000,
 });
 
 // Interceptor de Request: adjuntar token JWT si existe en localStorage
@@ -35,7 +41,8 @@ axiosClient.interceptors.response.use(
       // Token inválido o expirado
       console.warn('[API Auth] Sesión expirada o no autorizada');
       // No forzamos reload en rutas de auth para permitir mensajes de credenciales incorrectas
-      const isAuthRoute = error.config.url.includes('/auth/login') || error.config.url.includes('/auth/register');
+      const isAuthRoute =
+        error.config?.url?.includes('/auth/login') || error.config?.url?.includes('/auth/register');
       if (!isAuthRoute) {
         localStorage.removeItem('taskflow_token');
         localStorage.removeItem('taskflow_user');
