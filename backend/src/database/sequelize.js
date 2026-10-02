@@ -4,18 +4,23 @@ import { env } from '../config/env.js';
 let sequelize;
 
 if (env.db.url) {
-  const isNeon = env.db.url.includes('neon.tech') || env.db.url.includes('sslmode=require');
-  sequelize = new Sequelize(env.db.url, {
+  // Sequelize v6 requiere 'postgres://' en lugar de 'postgresql://'
+  const normalizedUrl = env.db.url.replace(/^postgresql:\/\//i, 'postgres://');
+  const isNeon = normalizedUrl.includes('neon.tech') || normalizedUrl.includes('sslmode=require');
+
+  sequelize = new Sequelize(normalizedUrl, {
     dialect: 'postgres',
     logging: false,
-    ...(isNeon && {
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
-      },
-    }),
+    dialectOptions: {
+      ...(isNeon || env.nodeEnv === 'production'
+        ? {
+            ssl: {
+              require: true,
+              rejectUnauthorized: false,
+            },
+          }
+        : {}),
+    },
   });
 } else {
   sequelize = new Sequelize({
