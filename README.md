@@ -1,20 +1,31 @@
 # 🚀 TaskFlow — Fullstack Project & Task Management System
 **Evaluación Final — Módulo 7 (React)**
 
-Aplicación web integral para la administración de proyectos y tareas, desarrollada como evaluación final del Módulo 7. Integra un Frontend reactivo construido con **React 19 + Vite 6 + Context API** y un Backend REST API construido con **Express 5 + Sequelize + PostgreSQL + JWT**.
+Aplicación web integral para la administración de proyectos y tareas, desarrollada como evaluación final del Módulo 7. Integra un Frontend reactivo construido con **React 19 + Vite 6 + Context API** y un Backend REST API construido con **Express 5 + Sequelize + PostgreSQL (Neon Database) + JWT**.
+
+---
+
+## 🌐 Enlaces en Vivo (Live Demo)
+
+| Servicio | Proveedor | Enlace Público |
+| :--- | :---: | :--- |
+| **🚀 Frontend Web App** | Render | [https://taskflow-front-xfsw.onrender.com](https://taskflow-front-xfsw.onrender.com) |
+| **📡 Backend API REST** | Render | [https://taskflow-fullstack-vtbf.onrender.com/api](https://taskflow-fullstack-vtbf.onrender.com/api) |
+| **📑 Swagger API Docs** | Render | [https://taskflow-fullstack-vtbf.onrender.com/api-docs](https://taskflow-fullstack-vtbf.onrender.com/api-docs) |
+| **🐘 Base de Datos Cloud** | Neon | PostgreSQL 16 Serverless |
 
 ---
 
 ## 📋 Tabla de Contenidos
-1. [Estructura del Proyecto](#-estructura-del-proyecto)
-2. [Requisitos Mínimos Implementados](#-requisitos-mínimos-implementados)
-3. [Conceptos de React Aplicados](#-conceptos-de-react-aplicados)
-4. [Requisitos Previos](#-requisitos-previos)
-5. [Instalación y Puesta en Marcha](#-instalación-y-puesta-en-marcha)
+1. [Enlaces en Vivo](#-enlaces-en-vivo-live-demo)
+2. [Estructura del Proyecto](#-estructura-del-proyecto)
+3. [Requisitos Mínimos Implementados](#-requisitos-mínimos-implementados)
+4. [Conceptos de React Aplicados](#-conceptos-de-react-aplicados)
+5. [Requisitos Previos](#-requisitos-previos)
+6. [Instalación y Puesta en Marcha Local](#-instalación-y-puesta-en-marcha-local)
    - [1. Backend (API REST)](#1-backend-api-rest)
    - [2. Frontend (React)](#2-frontend-react)
-6. [Endpoints Principales de la API](#-endpoints-principales-de-la-api)
-7. [Despliegue y Base de Datos en la Nube (Opcional)](#-despliegue-y-base-de-datos-en-la-nube-opcional)
+7. [Endpoints Principales de la API](#-endpoints-principales-de-la-api)
 
 ---
 
@@ -87,7 +98,7 @@ taskflow-fullstack/
 
 ---
 
-## 🛠️ Instalación y Puesta en Marcha
+## 🛠️ Instalación y Puesta en Marcha Local
 
 ### 1. Backend (API REST)
 
@@ -115,8 +126,8 @@ taskflow-fullstack/
    ```bash
    npm run dev
    ```
-   > 🌐 **Backend API:** `http://localhost:3000/api`  
-   > 📑 **Documentación Swagger:** `http://localhost:3000/api-docs`
+   > 🌐 **Backend Local:** `http://localhost:3000/api`  
+   > 📑 **Documentación Swagger Local:** `http://localhost:3000/api-docs`
 
 ---
 
@@ -137,7 +148,7 @@ taskflow-fullstack/
    ```bash
    npm run dev
    ```
-   > 💻 **Frontend Web App:** `http://localhost:5173`
+   > 💻 **Frontend Web App Local:** `http://localhost:5173`
 
 ---
 
@@ -155,11 +166,3 @@ taskflow-fullstack/
 - `POST /api/tasks`: Crear una nueva tarea.
 - `PATCH /api/tasks/:id`: Actualizar estado/datos de una tarea.
 - `DELETE /api/tasks/:id`: Eliminar una tarea.
-
----
-
-## ☁️ Despliegue y Base de Datos en la Nube (Opcional)
-
-- **Base de Datos:** [Neon Database (PostgreSQL Cloud)](https://neon.tech)
-- **Despliegue Backend:** [Render (Web Service)](https://render.com)
-- **Despliegue Frontend:** [Render / Vercel (Static Web App)](https://vercel.com)
