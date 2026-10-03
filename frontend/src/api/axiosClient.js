@@ -7,8 +7,13 @@ const defaultApiUrl =
     : 'http://localhost:3000/api';
 
 let rawApiUrl = import.meta.env.VITE_API_URL;
-if (rawApiUrl && (rawApiUrl.startsWith('postgresql://') || rawApiUrl.startsWith('postgres://'))) {
-  console.warn('[API Config] VITE_API_URL contiene una URL de PostgreSQL en lugar de la URL del Backend HTTP(S). Usando defaultApiUrl.');
+if (typeof rawApiUrl === 'string') {
+  rawApiUrl = rawApiUrl.trim().replace(/^['"]|['"]$/g, '');
+  if (!rawApiUrl.startsWith('http://') && !rawApiUrl.startsWith('https://')) {
+    console.warn('[API Config] Protocolo no soportado en VITE_API_URL. Usando defaultApiUrl:', defaultApiUrl);
+    rawApiUrl = null;
+  }
+} else {
   rawApiUrl = null;
 }
 
