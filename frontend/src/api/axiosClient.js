@@ -6,7 +6,13 @@ const defaultApiUrl =
     ? 'https://taskflow-fullstack-vtbf.onrender.com/api'
     : 'http://localhost:3000/api';
 
-const baseURL = import.meta.env.VITE_API_URL || defaultApiUrl;
+let rawApiUrl = import.meta.env.VITE_API_URL;
+if (rawApiUrl && (rawApiUrl.startsWith('postgresql://') || rawApiUrl.startsWith('postgres://'))) {
+  console.warn('[API Config] VITE_API_URL contiene una URL de PostgreSQL en lugar de la URL del Backend HTTP(S). Usando defaultApiUrl.');
+  rawApiUrl = null;
+}
+
+const baseURL = rawApiUrl || defaultApiUrl;
 
 const axiosClient = axios.create({
   baseURL,
